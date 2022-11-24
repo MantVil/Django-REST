@@ -6,7 +6,7 @@ local_settings.py
 
 # C extensions
 *.so
-
+local_settings.py
 # Distribution / packaging
 .Python
 build/
