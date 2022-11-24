@@ -16,5 +16,7 @@ class Post(models.Model):
         return _("{title} by {user} posted at {created_at}").format(
             title=self.title,
             user=self.user,
-            created_at=self.created_at,
-        )
+            created_at=self.created_at,)
+
+    class Meta:
+        ordering = ('-created_at',)
