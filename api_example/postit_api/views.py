@@ -30,3 +30,5 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
             return self.update(request, *args, **kwargs)
         else:
             raise ValidationError("You can not change bla bla bla")
+
+            
