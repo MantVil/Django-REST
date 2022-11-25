@@ -6,4 +6,4 @@ class PostSerializer(serializers.ModelSerializer):
     user_id = serializers.ReadOnlyField(source='user.id')
     class Meta:
         model = models.Post
-        fields = ('id', 'title', 'body', 'user', 'user_id', 'created at')
+        fields = ('id', 'title', 'body', 'user', 'user_id', 'created_at')
