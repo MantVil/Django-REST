@@ -23,3 +23,10 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
             return self.destroy(request, *args, **kwargs)
         else:
             raise ValidationError("Nepaeis!!!")
+
+    def put(self, request, *args, **kwargs):
+        post = models.Post.objects.filter(pk=kwargs['pk'], user=self.request.user)
+        if post.exists():
+            return self.update(request, *args, **kwargs)
+        else:
+            raise ValidationError("You can not change bla bla bla")
