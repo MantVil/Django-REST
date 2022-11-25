@@ -20,3 +20,20 @@ class Post(models.Model):
 
     class Meta:
         ordering = ('-created_at',)
+
+class Comment(models.Model):
+    body = models.TextField(_('body'), max_length=10000)
+    post = models.ForeignKey(Post, verbose_name='post', on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, verbose_name='user', on_delete=models.CASCADE, related_name='comments')
+
+    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
+
+
+    def __str__(self) -> str:
+        return _("Comment on {post_id} by {user} at {created_at}").format(
+            post_id=self.post.id,
+            user=self.user,
+            created_at=self.created_at,)
+        
+    class Meta:
+        ordering = ('-created_at',)
