@@ -32,12 +32,18 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
             raise ValidationError("You can not change bla bla bla")
 
 class CommentList(generics.ListCreateAPIView):
-    queryset = models.Comment.objects.all()
+    # queryset = models.Comment.objects.all()
     serializer_class = serializers.CommentSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+    
+    def get_queryset(self):
+        post = models.Post.objects.get(pk=self.kwargs['pk'])
+        return models.Comment.objects.filter(post=post)
+
+
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Comment.objects.all()
