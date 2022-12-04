@@ -37,3 +37,6 @@ class Comment(models.Model):
         
     class Meta:
         ordering = ('-created_at',)
+
+class PostLike(models.Model):
+    post = models.ForeignKey(Post, verbose_name=('post'), on_delete=models.CASCADE, related_name='likes')
